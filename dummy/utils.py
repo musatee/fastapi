@@ -4,11 +4,13 @@ from datetime import datetime, timedelta
 from fastapi.security.oauth2 import OAuth2PasswordBearer 
 from fastapi import Depends, status, HTTPException
 from . import schemas
+from .settings import environment_vars
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 15
+SECRET_KEY = environment_vars.secret_key
+ALGORITHM = environment_vars.algo
+ACCESS_TOKEN_EXPIRE_MINUTES = environment_vars.access_token_minute
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
