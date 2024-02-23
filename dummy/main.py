@@ -4,7 +4,7 @@ from .database import *
 from sqlalchemy.orm import Session
 from . import models
 from .schemas import * 
-from .routers import posts, users
+from .routers import posts, users, votes
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI() 
@@ -15,5 +15,6 @@ def greetings():
 
 app.include_router(posts.router)
 app.include_router(users.router)
+app.include_router(votes.router)
    
     

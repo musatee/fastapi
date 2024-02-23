@@ -22,7 +22,7 @@ def getposts(db: Session = Depends(get_db)):
 def getpost(id: int, db: Session = Depends(get_db)):
     data = db.query(models.Post).filter(models.Post.id == id)
     if not data.first(): 
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"No post with {id} is available")
+        raise HTTPException(stadatatus_code=status.HTTP_404_NOT_FOUND, detail=f"No post with {id} is available")
     return data.first()
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.CreatePostResponse)

@@ -54,3 +54,8 @@ class LoginUserResponse(BaseModel):
 
 class TokenData(BaseModel): 
     id: int 
+
+class Vote(BaseModel): 
+    post_id: int
+    voted: bool 
+
