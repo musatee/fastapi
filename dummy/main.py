@@ -4,10 +4,21 @@ from .database import *
 from sqlalchemy.orm import Session
 from . import models
 from .schemas import * 
-from .routers import posts, users, votes
+from .routers import posts, users, votes 
+from fastapi.middleware.cors import CORSMiddleware
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI() 
+
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def greetings(): 
